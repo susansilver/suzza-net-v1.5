@@ -1,0 +1,575 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import BaseHead from "../../components/base/BaseHead.astro";
+import Header from "../../components/base/Header.astro";
+import Footer from "../../components/base/Footer.astro";
+/* import SlimNewsletter from "../../components/SlimNewsletter.astro"; */
+import Offer from "../../components/Offer.astro";
+
+const allPosts = (await getCollection("blog")).sort(
+  (a, b) =>
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+
+const allCategories = [
+  ...new Set(allPosts.flatMap((blogPost) => blogPost.data.categories)),
+];
+
+// Filter posts for the "blog design" category
+const blogDesignPosts = allPosts
+  .filter(
+    (post) => post.data.categories?.includes("blog-design") && !post.data.draft
+  )
+  .slice(0, 3);
+
+// Filter posts for the "Writing tips" category
+const writingTipsPosts = allPosts
+  .filter(
+    (post) => post.data.categories?.includes("writing-tips") && !post.data.draft
+  )
+  .slice(0, 3);
+
+// Filter posts for the "Building Community" category
+const communityPosts = allPosts
+  .filter(
+    (post) =>
+      post.data.categories?.includes("building-community") && !post.data.draft
+  )
+  .slice(0, 3);
+
+// Filter posts for the "Making Money" category
+const moneyPosts = allPosts
+  .filter(
+    (post) => post.data.categories?.includes("making-money") && !post.data.draft
+  )
+  .slice(0, 3);
+
+// Filter posts for the "Motivation" category
+const motivationPosts = allPosts
+  .filter(
+    (post) => post.data.categories?.includes("motivation") && !post.data.draft
+  )
+  .slice(0, 3);
+
+// Filter posts for the "Planning and Productivity" category
+const planningPosts = allPosts
+  .filter(
+    (post) =>
+      post.data.categories?.includes("planning-and-productivity") &&
+      !post.data.draft
+  )
+  .slice(0, 3);
+
+// Filter posts for the "Search Taffic" category
+const searchPosts = allPosts
+  .filter(
+    (post) =>
+      post.data.categories?.includes("search-traffic") && !post.data.draft
+  )
+  .slice(0, 3);
+---
+
+<html lang="en">
+  <head>
+    <BaseHead
+      title="How to Start a Blog"
+      description="Articles on how to successfully start a new blog for first time writers."
+    />
+  </head>
+  <body class="bg-white-50">
+    <Header />
+    <main>
+      <div class="grid grid-cols-12">
+        <div
+          class="lg:col-span-6 lg:col-start-4 lg:col-end-10 col-span-10 col-start-2 col-end-12"
+        >
+          <!--   <SlimNewsletter /> -->
+          <div id="blog-summary">
+            <p>
+              Starting a new blog is a daunting task. You may have many
+              questions. Like how to get anyone to read it. The main goal of
+              this website is to help you get more traffic to your blog. As well
+              as helping you write great content. We discuss several topics in
+              this regard. They cover the most commonly asked questions by new
+              bloggers.
+            </p>
+          </div>
+          <div id="category-links">
+            Choose a Category.
+            <ul class="flex flex-row list-none flex-wrap">
+              {
+                allCategories.map((category) => {
+                  if (category) {
+                    return (
+                      <li class="m-3">
+                        <a
+                          class="rounded-xl bg-accent-400 underline p-2 hover:text-background-100"
+                          href={`#${category}`}
+                          title={`Go To ${category.replace(/-/g, " ")}`}
+                        >
+                          {category.replace(/-/g, " ")}
+                        </a>
+                      </li>
+                    );
+                  }
+                  return null;
+                })
+              }
+            </ul>
+          </div>
+
+          <a id="blog-design"></a>
+          <div id="blog-design">
+            <h2>Blog Design:</h2>
+            <ul class="list-none flex flex-row gap-5 flex-wrap">
+              {
+                blogDesignPosts.length === 0 ? (
+                  <p>Nothing to see here.</p>
+                ) : (
+                  blogDesignPosts.map((post) => (
+                    <li>
+                      <div
+                        id="card"
+                        class="rounded-xl bg-white-50 flex flex-col relative m-3"
+                        style="width:15em;"
+                      >
+                        <div id="card-img">
+                          <a href={`/${post.slug}`}>
+                            <Image
+                              src={post.data.headerImage.src}
+                              width={300}
+                              height={600}
+                              format="avif"
+                              quality="mid"
+                              alt={post.data.headerImage.alt}
+                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
+                              transition:name="hero"
+                            />
+                          </a>
+                        </div>
+                        <div id="card-text" class="p-8 bg-primary-200">
+                          <p class="text-balance">
+                            <a href={`/${post.slug}`}>{post.data.title}</a>
+                          </p>
+                          TL;DR
+                          <ul class="xs padding-bottom-xxl">
+                            <li>{post.data.tldrOne}</li>
+                            <li>{post.data.tldrTwo}</li>
+                            <li>{post.data.tldrThree}</li>
+                          </ul>
+                          <a
+                            href={`/${post.slug}`}
+                            class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50 absolute bottom-5 right-5"
+                          >
+                            Read More
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                )
+              }
+            </ul>
+            {
+              blogDesignPosts.length > 0 && (
+                <a href="/category/blog-design">
+                  <div class="bg-white w-full rounded-xl margin-y-large p-3 flex justify-center border border-text-950">
+                    View All ➤
+                  </div>
+                </a>
+              )
+            }
+          </div>
+
+          <a id="writing-tips"></a>
+          <div id="writing-tips">
+            <h2>Writing Tips:</h2>
+            <ul class="list-none flex flex-row flex-wrap gap-5">
+              {
+                writingTipsPosts.length === 0 ? (
+                  <p>Nothing to see here.</p>
+                ) : (
+                  writingTipsPosts.map((post) => (
+                    <li>
+                      <div
+                        id="card"
+                        class="rounded-xl bg-white-50 flex flex-col relative m-3"
+                        style="width:15em;"
+                      >
+                        <div id="card-img">
+                          <a href={`/${post.slug}`}>
+                            <Image
+                              src={post.data.headerImage.src}
+                              width={300}
+                              height={600}
+                              format="avif"
+                              quality="mid"
+                              alt={post.data.headerImage.alt}
+                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
+                              transition:name="hero"
+                            />
+                          </a>
+                        </div>
+                        <div id="card-text" class="p-8 bg-primary-200">
+                          <p class="text-balance">
+                            <a href={`/${post.slug}`}>{post.data.title}</a>
+                          </p>
+                          TL;DR
+                          <ul class="xs padding-bottom-xxl">
+                            <li>{post.data.tldrOne}</li>
+                            <li>{post.data.tldrTwo}</li>
+                            <li>{post.data.tldrThree}</li>
+                          </ul>
+                          <a
+                            href={`/${post.slug}`}
+                            class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50 absolute bottom-5 right-5"
+                          >
+                            Read More
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                )
+              }
+            </ul>
+            {
+              writingTipsPosts.length > 0 && (
+                <a href="/category/writing-tips">
+                  <div class="bg-white w-full rounded-xl margin-y-large p-3 flex justify-center border border-text-950">
+                    View All ➤
+                  </div>
+                </a>
+              )
+            }
+          </div>
+
+          <a id="building-community"></a>
+          <div id="building-community">
+            <h2>Building Community:</h2>
+            <ul class="list-none flex flex-row flex-wrap gap-5">
+              {
+                communityPosts.length === 0 ? (
+                  <p>Nothing to see here.</p>
+                ) : (
+                  communityPosts.map((post) => (
+                    <li>
+                      <div
+                        id="card"
+                        class="rounded-xl bg-white-50 flex flex-col relative m-3"
+                        style="width:15em;"
+                      >
+                        <div id="card-img">
+                          <a href={`/${post.slug}`}>
+                            <Image
+                              src={post.data.headerImage.src}
+                              width={300}
+                              height={600}
+                              format="avif"
+                              quality="mid"
+                              alt={post.data.headerImage.alt}
+                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
+                              transition:name="hero"
+                            />
+                          </a>
+                        </div>
+                        <div id="card-text" class="p-8 bg-primary-200">
+                          <p class="text-balance">
+                            <a href={`/${post.slug}`}>{post.data.title}</a>
+                          </p>
+                          TL;DR
+                          <ul class="xs padding-bottom-xxl">
+                            <li>{post.data.tldrOne}</li>
+                            <li>{post.data.tldrTwo}</li>
+                            <li>{post.data.tldrThree}</li>
+                          </ul>
+                          <a
+                            href={`/${post.slug}`}
+                            class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50 absolute bottom-5 right-5"
+                          >
+                            Read More
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                )
+              }
+            </ul>
+            {
+              communityPosts.length > 0 && (
+                <a href="/category/building-community">
+                  <div class="bg-white w-full rounded-xl margin-y-large p-3 flex justify-center border border-text-950">
+                    View All ➤
+                  </div>
+                </a>
+              )
+            }
+          </div>
+
+          <a id="making-money"></a>
+          <div id="making-money">
+            <h2>Making Money:</h2>
+            <ul class="list-none flex flex-row flex-wrap gap-5">
+              {
+                moneyPosts.length === 0 ? (
+                  <p>Nothing to see here.</p>
+                ) : (
+                  moneyPosts.map((post) => (
+                    <li>
+                      <div
+                        id="card"
+                        class="rounded-xl bg-white-50 flex flex-col relative m-3"
+                        style="width:15em;"
+                      >
+                        <div id="card-img">
+                          <a href={`/${post.slug}`}>
+                            <Image
+                              src={post.data.headerImage.src}
+                              width={300}
+                              height={600}
+                              format="avif"
+                              quality="mid"
+                              alt={post.data.headerImage.alt}
+                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
+                              transition:name="hero"
+                            />
+                          </a>
+                        </div>
+                        <div id="card-text" class="p-8 bg-primary-200">
+                          <p class="text-balance">
+                            <a href={`/${post.slug}`}>{post.data.title}</a>
+                          </p>
+                          TL;DR
+                          <ul class="xs padding-bottom-xxl">
+                            <li>{post.data.tldrOne}</li>
+                            <li>{post.data.tldrTwo}</li>
+                            <li>{post.data.tldrThree}</li>
+                          </ul>
+                          <a
+                            href={`/${post.slug}`}
+                            class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50 absolute bottom-5 right-5"
+                          >
+                            Read More
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                )
+              }
+            </ul>
+            {
+              moneyPosts.length > 0 && (
+                <a href="/category/making-money">
+                  <div class="bg-white w-full rounded-xl margin-y-large p-3 flex justify-center border border-text-950">
+                    View All ➤
+                  </div>
+                </a>
+              )
+            }
+          </div>
+
+          <a id="motivation"></a>
+          <div id="motivation">
+            <h2>Motivation:</h2>
+            <ul class="list-none flex flex-row flex-wrap gap-5">
+              {
+                motivationPosts.length === 0 ? (
+                  <p>Nothing to see here.</p>
+                ) : (
+                  motivationPosts.map((post) => (
+                    <li>
+                      <div
+                        id="card"
+                        class="rounded-xl bg-white-50 flex flex-col relative m-3"
+                        style="width:15em;"
+                      >
+                        <div id="card-img">
+                          <a href={`/${post.slug}`}>
+                            <Image
+                              src={post.data.headerImage.src}
+                              width={300}
+                              height={600}
+                              format="avif"
+                              quality="mid"
+                              alt={post.data.headerImage.alt}
+                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
+                              transition:name="hero"
+                            />
+                          </a>
+                        </div>
+                        <div id="card-text" class="p-8 bg-primary-200">
+                          <p class="text-balance">
+                            <a href={`/${post.slug}`}>{post.data.title}</a>
+                          </p>
+                          TL;DR
+                          <ul class="xs padding-bottom-xxl">
+                            <li>{post.data.tldrOne}</li>
+                            <li>{post.data.tldrTwo}</li>
+                            <li>{post.data.tldrThree}</li>
+                          </ul>
+                          <a
+                            href={`/${post.slug}`}
+                            class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50 absolute bottom-5 right-5"
+                          >
+                            Read More
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                )
+              }
+            </ul>
+            {
+              motivationPosts.length > 0 && (
+                <a href="/category/motivation">
+                  <div class="bg-white w-full rounded-xl margin-y-large p-3 flex justify-center border border-text-950">
+                    View All ➤
+                  </div>
+                </a>
+              )
+            }
+          </div>
+
+          <a id="planning-and-productivity"></a>
+          <div id="planning">
+            <h2>Planning and Productivity:</h2>
+            <ul class="list-none flex flex-row flex-wrap gap-5">
+              {
+                planningPosts.length === 0 ? (
+                  <p>Nothing to see here.</p>
+                ) : (
+                  planningPosts.map((post) => (
+                    <li>
+                      <div
+                        id="card"
+                        class="rounded-xl bg-white-50 flex flex-col relative m-3"
+                        style="width:15em;"
+                      >
+                        <div id="card-img">
+                          <a href={`/${post.slug}`}>
+                            <Image
+                              src={post.data.headerImage.src}
+                              width={300}
+                              height={600}
+                              format="avif"
+                              quality="mid"
+                              alt={post.data.headerImage.alt}
+                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
+                              transition:name="hero"
+                            />
+                          </a>
+                        </div>
+                        <div id="card-text" class="p-8 bg-primary-200">
+                          <p class="text-balance">
+                            <a href={`/${post.slug}`}>{post.data.title}</a>
+                          </p>
+                          TL;DR
+                          <ul class="xs padding-bottom-xxl">
+                            <li>{post.data.tldrOne}</li>
+                            <li>{post.data.tldrTwo}</li>
+                            <li>{post.data.tldrThree}</li>
+                          </ul>
+                          <a
+                            href={`/${post.slug}`}
+                            class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50 absolute bottom-5 right-5"
+                          >
+                            Read More
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                )
+              }
+            </ul>
+            {
+              planningPosts.length > 0 && (
+                <a href="/category/planning-and-productivity">
+                  <div class="bg-white w-full rounded-xl margin-y-large p-3 flex justify-center border border-text-950">
+                    View All ➤
+                  </div>
+                </a>
+              )
+            }
+          </div>
+
+          <a id="search-traffic"></a>
+          <div id="search-traffic">
+            <h2>Search Traffic:</h2>
+            <ul class="list-none flex flex-row flex-wrap gap-5">
+              {
+                searchPosts.length === 0 ? (
+                  <p>Nothing to see here.</p>
+                ) : (
+                  searchPosts.map((post) => (
+                    <li>
+                      <div
+                        id="card"
+                        class="rounded-xl bg-white-50 flex flex-col relative m-3"
+                        style="width:15em;"
+                      >
+                        <div id="card-img">
+                          <a href={`/${post.slug}`}>
+                            <Image
+                              src={post.data.headerImage.src}
+                              width={300}
+                              height={600}
+                              format="avif"
+                              quality="mid"
+                              alt={post.data.headerImage.alt}
+                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
+                              transition:name="hero"
+                            />
+                          </a>
+                        </div>
+                        <div id="card-text" class="p-8 bg-primary-200">
+                          <p class="text-balance">
+                            <a href={`/${post.slug}`}>{post.data.title}</a>
+                          </p>
+                          TL;DR
+                          <ul class="xs padding-bottom-xxl">
+                            <li>{post.data.tldrOne}</li>
+                            <li>{post.data.tldrTwo}</li>
+                            <li>{post.data.tldrThree}</li>
+                          </ul>
+                          <a
+                            href={`/${post.slug}`}
+                            class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50 absolute bottom-5 right-5"
+                          >
+                            Read More
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                )
+              }
+            </ul>
+            {
+              searchPosts.length > 0 && (
+                <a href="/category/search-traffic">
+                  <div class="bg-white w-full rounded-xl margin-y-large p-3 flex justify-center border-text-950 border">
+                    View All ➤
+                  </div>
+                </a>
+              )
+            }
+          </div>
+          <Offer />
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  #card-img {
+    height: 300px;
+    width: 300px;
+  }
+</style>
