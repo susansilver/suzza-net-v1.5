@@ -1,0 +1,260 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/base/BaseHead.astro";
+import Header from "../components/base/Header.astro";
+import Footer from "../components/base/Footer.astro";
+import HeaderImage from "../components/blog/HeaderImage.astro";
+import AuthorBio from "../components/blog/AuthorBio.astro";
+/* import Newsletter from "../components/Newsletter.astro"; */
+import Offer from "../components/Offer.astro";
+import TOC from "../components/TableOfContents.astro";
+
+interface Props {
+  frontmatter: CollectionEntry<"blog">["data"] & {
+    title: string;
+    updatedDate: string;
+    description: string;
+    pubDate: string;
+    categories: string;
+    author: string;
+    tldrOne: string;
+    tldrTwo: string;
+    tldrThree: string;
+    authorImg: string;
+    authorWeb: string;
+    authorX: string;
+    authorLi: string;
+    authorBio: string;
+    authorUrl: string;
+    ogImg: string;
+    headerImage: {
+      src: string;
+      alt: string;
+    };
+  };
+  headings: {
+    slug: string;
+    text: string;
+    depth: number;
+  }[];
+}
+
+const { frontmatter, headings } = Astro.props;
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <BaseHead
+      title={frontmatter.title}
+      description={frontmatter.description}
+      image={frontmatter.ogImg}
+    />
+  </head>
+
+  <body class="bg-primary-300">
+    <Header />
+    <main class="margin-y-xxl">
+      <article>
+        <div class="grid grid-cols-12">
+          <div class="col-span-10 col-start-2 col-end-12">
+            <!--   <Newsletter /> -->
+            <div>
+              <HeaderImage
+                imagePath={frontmatter.headerImage.src}
+                alt={frontmatter.headerImage.alt}
+              />
+              <div id="meta">
+                <h1 class="text-secondary-950 text-balance">
+                  {frontmatter.title}
+                </h1>
+                <div class="flex flex-row gap-3 poppins med">
+                  <div id="time">Updated: {frontmatter.updatedDate}</div>
+                  <div id="category">
+                    Category: <a href={`/category/${frontmatter.categories}`}
+                      >{frontmatter.categories.replace(/-/g, " ")}</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 gap-3">
+          <div
+            class="col-span-10 col-start-2 col-end-12 lg:col-span-7 lg:col-start-2 lg:col-end-9"
+          >
+            <div id="content" class="rounded-xl bg-white-50 margin-y-large p-8">
+              <!--   <a href="#comments">Skip to the Comments</a> -->
+              <p>TL;DR</p>
+              <ul>
+                <li>{frontmatter.tldrOne}</li>
+                <li>{frontmatter.tldrTwo}</li>
+                <li>{frontmatter.tldrThree}</li>
+              </ul>
+              <hr />
+              {
+                headings && headings.length > 0 && (
+                  <>
+                    <p id="toc-title" class="lar poppins">
+                      Table of Contents
+                    </p>
+                    <TOC headings={headings} />
+                  </>
+                )
+              }
+
+              <!-- End Table of Contents -->
+              <hr />
+              <slot />
+            </div>
+
+            <aside>
+              <!-- <a name="comments"></a>
+              <div
+                id="comments"
+                class="rounded-xl bg-white-50 p-8 margin-top-large"
+              >
+                All comments require approval. <a href="/comment-policy"
+                  >Read our comment Policy</a
+                >
+                <div class="commentbox margin-top-small"></div>
+              </div> -->
+              <Offer />
+            </aside>
+          </div>
+          <div
+            class="lg:col-span-3 lg:col-start-9 col-span-12 col-start-2 col-end-12 flex flex-col gap-3 margin-top-large"
+          >
+            <aside>
+              <AuthorBio
+                imagePath={frontmatter.authorImg}
+                authorUrl={frontmatter.authorUrl}
+                author={frontmatter.author}
+                authorWeb={frontmatter.authorWeb}
+                authorLi={frontmatter.authorLi}
+                authorX={frontmatter.authorX}
+                authorBio={frontmatter.authorBio}
+              />
+            </aside>
+            <aside>
+              <div
+                id="advertisment-policy"
+                class="bg-white-50 rounded-xl p-8 xs"
+              >
+                <h3>Advertisement Policy</h3>
+                <hr />
+                <p>All advertising is disclosed on this website.</p>
+                <p>Sponsored posts will be marked as such.</p>
+                <p>
+                  Some links are affiliate links and will be marked (affliiate).
+                </p>
+                <p>I will earn a small commission if you purchase.</p>
+                <p>As an Amazon Associate I earn from qualifying purchases.</p>
+                <p>
+                  <a href="mailto:suzza@susansilve.net" target="_blank"
+                    >Contact Suzza</a
+                  > for advertising inquiries.
+                </p>
+              </div>
+            </aside>
+            <aside>
+              <div
+                id="newsletter-signup-sidebar"
+                class="bg-white-50 rounded-xl p-8 xs"
+              >
+                <h3>Subscribe</h3>
+                <hr />
+                <ul>
+                  <li>Receive notfications of new posts by subscribing.</li>
+                  <li>
+                    You will also join a community of writers who want more
+                    traffic to their blogs.
+                  </li>
+                  <li>Get the How to Start Blogging FAQ</li>
+                </ul>
+                <a href="/" class="lar rounded-xl p-2 bg-accent-400"
+                  >Subscribe</a
+                >
+              </div>
+            </aside>
+            <aside>
+              <div id="guest-policy" class="bg-white-50 rounded-xl p-8 xs">
+                <h3>Guest Post Policy</h3>
+                <hr />
+                <p>This blog accepts guest posts.</p>
+                <p>Please do not send full articles!</p>
+                <p>Directions for Pitiching:</p>
+                <div id="pitch-directions">
+                  <div id="pitch-directions">
+                    <ul>
+                      <li>Send an email</li>
+                      <li>Put pitch in your subject line</li>
+                      <li>
+                        Send a short pargraph with a description of your
+                        article.
+                      </li>
+                      <li>Make sure to include your website and socials</li>
+                      <li>I will follow up with you in the next two weeks.</li>
+                    </ul>
+                    <p>
+                      Email pitches to <a
+                        href="mailto:suzza@susansilver.net"
+                        target="_blank">suzza@susansilver.net</a
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </aside>
+            <aside>
+              <div id="support" class="rounded-xl bg-white-50 p-8 xs">
+                <h3 class="text-balance">Thank You For Your Support</h3>
+                <hr />
+                <p>
+                  If you enjoyed that post, consider supporting me on Patreon.
+                </p>
+                <p>
+                  Even $1 a month helps with the costs of website maintenance.
+                </p>
+                <ul>
+                  <li>
+                    <a
+                      href="https://www.patreon.com/susansilver"
+                      target="_blank">Patreon</a
+                    >
+                  </li>
+                </ul>
+                <p>You can also send me a tip.</p>
+                <ul>
+                  <li>
+                    <a href="https://ko-fi.com/SuzzaS" target="_blank">Ko-fi</a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.paypal.com/paypalme/SuzzaS"
+                      target="_blank">Paypal</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <Footer />
+    <script
+      is:inline
+      src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+    <script is:inline>
+      commentBox("5707103779946496-proj");
+    </script>
+  </body>
+</html>
+
+<style>
+  #category {
+    text-transform: capitalize;
+  }
+</style>
