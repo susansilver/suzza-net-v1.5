@@ -1,0 +1,48 @@
+---
+import {
+  Astronav,
+  MenuItems,
+  MenuIcon,
+  Dropdown,
+  DropdownItems,
+  DropdownSubmenu,
+} from "astro-navbar";
+---
+
+<header class="lg:flex p-5 gap-5">
+  <Astronav>
+    <div
+      class="flex w-full lg:justify-between justify-start flex-col lg:flex-row items-baseline"
+    >
+      <div class="text-5xl poppins">
+        <a href="/" class="no-underline"><strong>Suzza Silver</strong></a>
+      </div>
+      <div id="menu-list">
+        <div class="block lg:hidden">
+          <MenuIcon class="w-4 h-4 text-gray-800" />
+        </div>
+
+        <MenuItems class="hidden lg:flex">
+          <ul class="flex flex-col lg:flex-row lg:gap-5 list-none lar">
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog">How to Blog</a></li>
+            <li><a href="/archive">Blog Archive</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li>
+              <a href="https://www.patreon.com/susansilver" target="_blank"
+                >Patreon</a
+              >
+            </li>
+            <li><a href="/">Subscribe</a></li>
+            <li>
+              <a
+                href="mailto:suzza@susansilver.net"
+                class="p-3 bg-white-50 rounded-xl">Contact</a
+              >
+            </li>
+          </ul>
+        </MenuItems>
+      </div>
+    </div>
+  </Astronav>
+</header>
