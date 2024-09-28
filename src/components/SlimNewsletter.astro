@@ -3,20 +3,20 @@ import NewsletterImage from "../assets/newsletter-image.jpg";
 import { Image } from "astro:assets";
 ---
 
-<div
-  id="newsletter"
-  class="flex flex-col lg:flex-row bg-background-50 rounded-xl margin-y-xxl"
->
+<div id="newsletter" class="flex flex-col lg:flex-row margin-y-xxl">
   <div id="newsletter-img">
     <Image
       src={NewsletterImage}
       alt="A blooming stargazer lilly"
       width={500}
       height={800}
-      class="lg:rounded-bl-xl lg:rounded-tl-xl h-full w-full"
+      class="h-full w-full"
     />
   </div>
-  <div id="newsletter-signup" class="flex flex-col padding-y-med">
+  <div
+    id="newsletter-signup"
+    class="flex flex-col padding-y-med bg-white-50 border-black border"
+  >
     <div
       id="newsletter-text"
       class="padding-x-small padding-bottom-xxl text-balance text-center"
