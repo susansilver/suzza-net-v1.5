@@ -1,0 +1,157 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "astro",
+  "frontMatter.preview.host": "http://localhost:4321",
+  "frontMatter.content.publicFolder": {
+    "path": "src/assets/headers/",
+    "relative": true
+  },
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "blog",
+      "path": "[[workspace]]/src/content/blog"
+    }
+  ],
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": false,
+      "previewPath": "'blog'",
+      "filePrefix": null,
+      "fileType": "mdx",
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Layout",
+          "name": "layout",
+          "type": "string",
+          "default": "/src/layouts/Post.astro"
+        },
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "single": true
+        },
+        {
+          "title": "Description",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "draft",
+          "name": "draft",
+          "type": "boolean"
+        },
+        {
+          "title": "pubDate",
+          "name": "pubDate",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Updated date",
+          "name": "updatedDate",
+          "type": "datetime",
+          "dateFormat": "MMMM do, Y",
+          "default": "{{now}}",
+          "isModifiedDate": true
+        },
+        {
+          "title": "Categories",
+          "name": "categories",
+          "type": "choice",
+          "choices": [
+            "blog-design",
+            "writing-tips",
+            "building-community",
+            "making-money",
+            "motivation",
+            "planning-and-productivity",
+            "search-traffic"
+          ]
+        },
+        {
+          "title": "Author",
+          "name": "author",
+          "type": "string",
+          "default": "susan-silver"
+        },
+        {
+          "title": "TL;DR One",
+          "name": "tldrOne",
+          "type": "string"
+        },
+        {
+          "title": "TL;DR Two",
+          "name": "tldrTwo",
+          "type": "string"
+        },
+        {
+          "title": "TL;DR Three",
+          "name": "tldrThree",
+          "type": "string"
+        },
+        {
+          "title": "headerImage",
+          "name": "headerImage",
+          "type": "fields",
+          "fields": [
+            {
+              "title": "alt",
+              "name": "alt",
+              "type": "string"
+            },
+            {
+              "title": "src",
+              "name": "src",
+              "type": "image"
+            }
+          ]
+        },
+        {
+          "title": "Author Image",
+          "name": "authorImg",
+          "type": "string",
+          "default": "/src/assets/avatars/suzza-avatar-transparent.png"
+        },
+        {
+          "title": "Author Website",
+          "name": "authorWeb",
+          "type": "string",
+          "default": "https://susansilver.net"
+        },
+        {
+          "title": "Author X",
+          "name": "authorX",
+          "type": "string",
+          "default": "https://mathstodon.xyz/@suzza"
+        },
+        {
+          "title": "Author LinkedIn",
+          "name": "authorLi",
+          "type": "string",
+          "default": "https://www.linkedin.com/in/suzza/"
+        },
+        {
+          "title": "Author Bio",
+          "name": "authorBio",
+          "type": "string",
+          "default": "The writer with the mathematical muse."
+        },
+        {
+          "title": "Author URL",
+          "name": "authorUrl",
+          "type": "string",
+          "default": "/authors/suzza-silver"
+        },
+        {
+          "title": "OG Image",
+          "name": "ogImg",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}
