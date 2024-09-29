@@ -18,18 +18,27 @@ import compressor from "astro-compressor";
 // https://astro.build/config
 export default defineConfig({
   site: "https://suzza.net",
-  integrations: [favicons({
-    masterPicture: "public/suzza-fav-icon.png",
-    emitAssets: true,
-    faviconsDarkMode: false,
-    path: "public/suzza-fav-icon.png",
-    appName: "Suzza.net",
-    appShortName: "Suzza.net",
-  }), embeds(), mdx(), tailwind(), sitemap(), betterImageService(), (await import("@playform/compress")).default({
-    CSS: true,
-    HTML: true,
-    Image: false,
-    JavaScript: true,
-    SVG: false,
-  }), compressor()],
+  integrations: [
+    favicons({
+      masterPicture: "public/suzza-fav-icon.png",
+      emitAssets: true,
+      faviconsDarkMode: false,
+      path: "icons/",
+      appName: "Suzza.net",
+      appShortName: "Suzza.net",
+    }),
+    embeds(),
+    mdx(),
+    tailwind(),
+    sitemap(),
+    betterImageService(),
+    (await import("@playform/compress")).default({
+      CSS: true,
+      HTML: true,
+      Image: false,
+      JavaScript: true,
+      SVG: false,
+    }),
+    compressor(),
+  ],
 });
