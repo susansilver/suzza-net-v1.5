@@ -26,15 +26,6 @@ const { title, description, image = "/flower-bloom.jpg" } = Astro.props;
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
-<!-- RSS Feed Discovery -->
-<!-- <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" /> -->
-<link
-  rel="alternate"
-  type="application/rss+xml"
-  title="Suzza Silver"
-  href={`${Astro.site}rss.xml`}
-/>
-
 <!-- Sitemap -->
 <link rel="sitemap" href="/sitemap-index.xml" />
 
