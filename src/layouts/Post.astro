@@ -51,7 +51,7 @@ const { frontmatter, headings } = Astro.props;
     />
   </head>
 
-  <body class="bg-primary-300">
+  <body class="bg-white-50">
     <Header />
     <main class="margin-y-xxl">
       <article>
@@ -139,7 +139,7 @@ const { frontmatter, headings } = Astro.props;
             <aside>
               <div
                 id="advertisment-policy"
-                class="bg-white-50 rounded-xl p-8 xs"
+                class="bg-white-50 rounded-xl p-8 xs border border-text-950"
               >
                 <h3>Advertisement Policy</h3>
                 <hr />
@@ -160,7 +160,7 @@ const { frontmatter, headings } = Astro.props;
             <aside>
               <div
                 id="newsletter-signup-sidebar"
-                class="bg-white-50 rounded-xl p-8 xs"
+                class="bg-primary-300 rounded-xl p-8 xs border border-text-950"
               >
                 <h3>Subscribe</h3>
                 <hr />
@@ -172,13 +172,18 @@ const { frontmatter, headings } = Astro.props;
                   </li>
                   <li>Get the How to Start Blogging FAQ</li>
                 </ul>
-                <a href="/" class="lar rounded-xl p-2 bg-accent-400"
+                <a
+                  href="/"
+                  class="lar rounded-xl p-2 bg-accent-400 hover:bg-accent-700 hover:text-white-50"
                   >Subscribe</a
                 >
               </div>
             </aside>
             <aside>
-              <div id="guest-policy" class="bg-white-50 rounded-xl p-8 xs">
+              <div
+                id="guest-policy"
+                class="bg-white-50 rounded-xl p-8 xs border border-text-950"
+              >
                 <h3>Guest Post Policy</h3>
                 <hr />
                 <p>This blog accepts guest posts.</p>
@@ -207,7 +212,10 @@ const { frontmatter, headings } = Astro.props;
               </div>
             </aside>
             <aside>
-              <div id="support" class="rounded-xl bg-white-50 p-8 xs">
+              <div
+                id="support"
+                class="rounded-xl bg-white-50 p-8 xs border border-text-950"
+              >
                 <h3 class="text-balance">Thank You For Your Support</h3>
                 <hr />
                 <p>
