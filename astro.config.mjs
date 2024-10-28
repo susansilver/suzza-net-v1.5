@@ -26,6 +26,7 @@ export default defineConfig({
       path: "icons/",
       appName: "Suzza.net",
       appShortName: "Suzza.net",
+      appDescription: "A blog about blogging by Suzza Silver",
     }),
     embeds(),
     mdx(),
