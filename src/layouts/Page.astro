@@ -47,7 +47,9 @@ const { frontmatter } = Astro.props;
                 )
               }
             </div>
-            <div class="bg-white-50 rounded-xl margin-top-large">
+            <div
+              class="bg-white-50 rounded-xl margin-top-large paragraph-width"
+            >
               <slot />
             </div>
           </article>
@@ -59,3 +61,9 @@ const { frontmatter } = Astro.props;
     </main>
   </body>
 </html>
+
+<style>
+  .paragraph-width {
+    max-width: 65ch;
+  }
+</style>
