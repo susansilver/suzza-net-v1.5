@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+
+const { url, headerSrc, headerAlt, title, tldrOne, tldrTwo, tldrThree } =
+  Astro.props;
+---
+
+<div id="card" class="rounded-xl bg-white-50 flex flex-col shadow-xl">
+  <div id="card-img" view-transition-name>
+    <a href={url}>
+      <Image
+        src={headerSrc}
+        width={300}
+        height={600}
+        format="avif"
+        quality="mid"
+        alt={headerAlt}
+        class="w-full h-full rounded-tl-xl rounded-tr-xl"
+      />
+    </a>
+  </div>
+  <div id="card-text" class="p-8 bg-primary-200 relative">
+    <p class="text-balance">
+      <a href={url}>{title}</a>
+    </p>
+    TL;DR
+    <ul class="xs padding-bottom-xxl">
+      <li>{tldrOne}</li>
+      <li>{tldrTwo}</li>
+      <li>{tldrThree}</li>
+    </ul>
+    <a
+      href={url}
+      class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50 absolute bottom-10 right-10"
+    >
+      Read More
+    </a>
+  </div>
+</div>
+
+<style>
+  #card {
+    width: 15em;
+  }
+
+  #card-img {
+    height: 300px;
+    width: 300px;
+  }
+
+  #card-text {
+    height: 28em;
+  }
+</style>

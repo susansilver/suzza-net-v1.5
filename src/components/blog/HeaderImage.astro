@@ -1,6 +1,6 @@
 ---
-import type { ImageMetadata } from 'astro';
-import { Image } from 'astro:assets';
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 
 interface Props {
   imagePath: string;
@@ -8,11 +8,16 @@ interface Props {
 }
 
 const { imagePath, alt } = Astro.props;
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/headers/*.{jpeg,jpg,png,gif}');
-if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: "src/assets/headers/*.{jpeg,jpg,png,gif}"`);
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/headers/*.{jpeg,jpg,png,gif}"
+);
+if (!images[imagePath])
+  throw new Error(
+    `"${imagePath}" does not exist in glob: "src/assets/headers/*.{jpeg,jpg,png,gif}"`
+  );
 ---
 
-<div  id="header-image">
+<div id="header-image" view-transition-name class="shadow-xl">
   <Image
     src={images[imagePath]()}
     width={1200}
@@ -21,6 +26,5 @@ if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: 
     quality="mid"
     alt={alt}
     class="rounded-xl w-full"
-   transition:name="hero"
   />
 </div>

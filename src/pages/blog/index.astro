@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
+import Card from "../../components/Card.astro";
 import BaseHead from "../../components/base/BaseHead.astro";
 import Header from "../../components/base/Header.astro";
 import Footer from "../../components/base/Footer.astro";
@@ -129,45 +130,15 @@ const searchPosts = allPosts
                 ) : (
                   blogDesignPosts.map((post) => (
                     <li>
-                      <div
-                        id="card"
-                        class="rounded-xl bg-white-50 flex flex-col"
-                        style="width:15em;"
-                      >
-                        <div id="card-img">
-                          <a href={`/${post.slug}`}>
-                            <Image
-                              src={post.data.headerImage.src}
-                              width={300}
-                              height={600}
-                              format="avif"
-                              quality="mid"
-                              alt={post.data.headerImage.alt}
-                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
-                              transition:name="hero"
-                            />
-                          </a>
-                        </div>
-                        <div id="card-text" class="p-8 bg-primary-200">
-                          <p class="text-balance">
-                            <a href={`/${post.slug}`}>{post.data.title}</a>
-                          </p>
-                          TL;DR
-                          <ul class="xs padding-bottom-xxl">
-                            <li>{post.data.tldrOne}</li>
-                            <li>{post.data.tldrTwo}</li>
-                            <li>{post.data.tldrThree}</li>
-                          </ul>
-                          <div class="flex justify-end">
-                            <a
-                              href={`/${post.slug}`}
-                              class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50"
-                            >
-                              Read More
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+                      <Card
+                        url={`/${post.slug}`}
+                        headerSrc={post.data.headerImage.src}
+                        headerAlt={post.data.headerImage.alt}
+                        title={post.data.title}
+                        tldrOne={post.data.tldrOne}
+                        tldrTwo={post.data.tldrTwo}
+                        tldrThree={post.data.tldrThree}
+                      />
                     </li>
                   ))
                 )
@@ -194,45 +165,15 @@ const searchPosts = allPosts
                 ) : (
                   writingTipsPosts.map((post) => (
                     <li>
-                      <div
-                        id="card"
-                        class="rounded-xl bg-white-50 flex flex-col"
-                        style="width:15em;"
-                      >
-                        <div id="card-img">
-                          <a href={`/${post.slug}`}>
-                            <Image
-                              src={post.data.headerImage.src}
-                              width={300}
-                              height={600}
-                              format="avif"
-                              quality="mid"
-                              alt={post.data.headerImage.alt}
-                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
-                              transition:name="hero"
-                            />
-                          </a>
-                        </div>
-                        <div id="card-text" class="p-8 bg-primary-200">
-                          <p class="text-balance">
-                            <a href={`/${post.slug}`}>{post.data.title}</a>
-                          </p>
-                          TL;DR
-                          <ul class="xs padding-bottom-xxl">
-                            <li>{post.data.tldrOne}</li>
-                            <li>{post.data.tldrTwo}</li>
-                            <li>{post.data.tldrThree}</li>
-                          </ul>
-                          <div class="flex justify-end">
-                            <a
-                              href={`/${post.slug}`}
-                              class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50"
-                            >
-                              Read More
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+                      <Card
+                        url={`/${post.slug}`}
+                        headerSrc={post.data.headerImage.src}
+                        headerAlt={post.data.headerImage.alt}
+                        title={post.data.title}
+                        tldrOne={post.data.tldrOne}
+                        tldrTwo={post.data.tldrTwo}
+                        tldrThree={post.data.tldrThree}
+                      />
                     </li>
                   ))
                 )
@@ -259,45 +200,15 @@ const searchPosts = allPosts
                 ) : (
                   communityPosts.map((post) => (
                     <li>
-                      <div
-                        id="card"
-                        class="rounded-xl bg-white-50 flex flex-col"
-                        style="width:15em;"
-                      >
-                        <div id="card-img">
-                          <a href={`/${post.slug}`}>
-                            <Image
-                              src={post.data.headerImage.src}
-                              width={300}
-                              height={600}
-                              format="avif"
-                              quality="mid"
-                              alt={post.data.headerImage.alt}
-                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
-                              transition:name="hero"
-                            />
-                          </a>
-                        </div>
-                        <div id="card-text" class="p-8 bg-primary-200">
-                          <p class="text-balance">
-                            <a href={`/${post.slug}`}>{post.data.title}</a>
-                          </p>
-                          TL;DR
-                          <ul class="xs padding-bottom-xxl">
-                            <li>{post.data.tldrOne}</li>
-                            <li>{post.data.tldrTwo}</li>
-                            <li>{post.data.tldrThree}</li>
-                          </ul>
-                          <div class="flex justify-end">
-                            <a
-                              href={`/${post.slug}`}
-                              class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50"
-                            >
-                              Read More
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+                      <Card
+                        url={`/${post.slug}`}
+                        headerSrc={post.data.headerImage.src}
+                        headerAlt={post.data.headerImage.alt}
+                        title={post.data.title}
+                        tldrOne={post.data.tldrOne}
+                        tldrTwo={post.data.tldrTwo}
+                        tldrThree={post.data.tldrThree}
+                      />
                     </li>
                   ))
                 )
@@ -324,45 +235,15 @@ const searchPosts = allPosts
                 ) : (
                   moneyPosts.map((post) => (
                     <li>
-                      <div
-                        id="card"
-                        class="rounded-xl bg-white-50 flex flex-col"
-                        style="width:15em;"
-                      >
-                        <div id="card-img">
-                          <a href={`/${post.slug}`}>
-                            <Image
-                              src={post.data.headerImage.src}
-                              width={300}
-                              height={600}
-                              format="avif"
-                              quality="mid"
-                              alt={post.data.headerImage.alt}
-                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
-                              transition:name="hero"
-                            />
-                          </a>
-                        </div>
-                        <div id="card-text" class="p-8 bg-primary-200">
-                          <p class="text-balance">
-                            <a href={`/${post.slug}`}>{post.data.title}</a>
-                          </p>
-                          TL;DR
-                          <ul class="xs padding-bottom-xxl">
-                            <li>{post.data.tldrOne}</li>
-                            <li>{post.data.tldrTwo}</li>
-                            <li>{post.data.tldrThree}</li>
-                          </ul>
-                          <div class="flex justify-end">
-                            <a
-                              href={`/${post.slug}`}
-                              class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50"
-                            >
-                              Read More
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+                      <Card
+                        url={`/${post.slug}`}
+                        headerSrc={post.data.headerImage.src}
+                        headerAlt={post.data.headerImage.alt}
+                        title={post.data.title}
+                        tldrOne={post.data.tldrOne}
+                        tldrTwo={post.data.tldrTwo}
+                        tldrThree={post.data.tldrThree}
+                      />
                     </li>
                   ))
                 )
@@ -389,45 +270,15 @@ const searchPosts = allPosts
                 ) : (
                   motivationPosts.map((post) => (
                     <li>
-                      <div
-                        id="card"
-                        class="rounded-xl bg-white-50 flex flex-col"
-                        style="width:15em;"
-                      >
-                        <div id="card-img">
-                          <a href={`/${post.slug}`}>
-                            <Image
-                              src={post.data.headerImage.src}
-                              width={300}
-                              height={600}
-                              format="avif"
-                              quality="mid"
-                              alt={post.data.headerImage.alt}
-                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
-                              transition:name="hero"
-                            />
-                          </a>
-                        </div>
-                        <div id="card-text" class="p-8 bg-primary-200">
-                          <p class="text-balance">
-                            <a href={`/${post.slug}`}>{post.data.title}</a>
-                          </p>
-                          TL;DR
-                          <ul class="xs padding-bottom-xxl">
-                            <li>{post.data.tldrOne}</li>
-                            <li>{post.data.tldrTwo}</li>
-                            <li>{post.data.tldrThree}</li>
-                          </ul>
-                          <div class="flex justify-end">
-                            <a
-                              href={`/${post.slug}`}
-                              class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50"
-                            >
-                              Read More
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+                      <Card
+                        url={`/${post.slug}`}
+                        headerSrc={post.data.headerImage.src}
+                        headerAlt={post.data.headerImage.alt}
+                        title={post.data.title}
+                        tldrOne={post.data.tldrOne}
+                        tldrTwo={post.data.tldrTwo}
+                        tldrThree={post.data.tldrThree}
+                      />
                     </li>
                   ))
                 )
@@ -454,45 +305,15 @@ const searchPosts = allPosts
                 ) : (
                   planningPosts.map((post) => (
                     <li>
-                      <div
-                        id="card"
-                        class="rounded-xl bg-white-50 flex flex-col"
-                        style="width:15em;"
-                      >
-                        <div id="card-img">
-                          <a href={`/${post.slug}`}>
-                            <Image
-                              src={post.data.headerImage.src}
-                              width={300}
-                              height={600}
-                              format="avif"
-                              quality="mid"
-                              alt={post.data.headerImage.alt}
-                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
-                              transition:name="hero"
-                            />
-                          </a>
-                        </div>
-                        <div id="card-text" class="p-8 bg-primary-200">
-                          <p class="text-balance">
-                            <a href={`/${post.slug}`}>{post.data.title}</a>
-                          </p>
-                          TL;DR
-                          <ul class="xs padding-bottom-xxl">
-                            <li>{post.data.tldrOne}</li>
-                            <li>{post.data.tldrTwo}</li>
-                            <li>{post.data.tldrThree}</li>
-                          </ul>
-                          <div class="flex justify-end">
-                            <a
-                              href={`/${post.slug}`}
-                              class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50"
-                            >
-                              Read More
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+                      <Card
+                        url={`/${post.slug}`}
+                        headerSrc={post.data.headerImage.src}
+                        headerAlt={post.data.headerImage.alt}
+                        title={post.data.title}
+                        tldrOne={post.data.tldrOne}
+                        tldrTwo={post.data.tldrTwo}
+                        tldrThree={post.data.tldrThree}
+                      />
                     </li>
                   ))
                 )
@@ -519,45 +340,15 @@ const searchPosts = allPosts
                 ) : (
                   searchPosts.map((post) => (
                     <li>
-                      <div
-                        id="card"
-                        class="rounded-xl bg-white-50 flex flex-col"
-                        style="width:15em;"
-                      >
-                        <div id="card-img">
-                          <a href={`/${post.slug}`}>
-                            <Image
-                              src={post.data.headerImage.src}
-                              width={300}
-                              height={600}
-                              format="avif"
-                              quality="mid"
-                              alt={post.data.headerImage.alt}
-                              class="w-full h-full rounded-tl-xl rounded-tr-xl"
-                              transition:name="hero"
-                            />
-                          </a>
-                        </div>
-                        <div id="card-text" class="p-8 bg-primary-200">
-                          <p class="text-balance">
-                            <a href={`/${post.slug}`}>{post.data.title}</a>
-                          </p>
-                          TL;DR
-                          <ul class="xs padding-bottom-xxl">
-                            <li>{post.data.tldrOne}</li>
-                            <li>{post.data.tldrTwo}</li>
-                            <li>{post.data.tldrThree}</li>
-                          </ul>
-                          <div class="flex justify-end">
-                            <a
-                              href={`/${post.slug}`}
-                              class="rounded-xl bg-accent-400 underline p-2 hover:bg-accent-700 hover:text-white-50"
-                            >
-                              Read More
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+                      <Card
+                        url={`/${post.slug}`}
+                        headerSrc={post.data.headerImage.src}
+                        headerAlt={post.data.headerImage.alt}
+                        title={post.data.title}
+                        tldrOne={post.data.tldrOne}
+                        tldrTwo={post.data.tldrTwo}
+                        tldrThree={post.data.tldrThree}
+                      />
                     </li>
                   ))
                 )

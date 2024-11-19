@@ -5,6 +5,7 @@ import Header from "../../../components/base/Header.astro";
 import Footer from "../../../components/base/Footer.astro";
 import { Image } from "astro:assets";
 import { Pagination } from "accessible-astro-components";
+import Card from "../../../components/Card.astro";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const allPosts = await getCollection("blog");
@@ -158,48 +159,15 @@ const { params } = Astro;
             {
               page.data.map((blogPostEntry: BlogPostEntry) => (
                 <>
-                  <div
-                    id="card"
-                    class="rounded-xl bg-white-50 flex flex-col"
-                    style="width:15em;"
-                  >
-                    <div id="card-img">
-                      <a href={`/${blogPostEntry.slug}`}>
-                        <Image
-                          src={blogPostEntry.data.headerImage.src}
-                          width={300}
-                          height={600}
-                          format="avif"
-                          quality="mid"
-                          alt={blogPostEntry.data.headerImage.alt}
-                          class="w-full h-full rounded-tl-xl rounded-tr-xl"
-                          transition:name="hero"
-                        />
-                      </a>
-                    </div>
-                    <div id="card-text" class="p-8 bg-primary-200">
-                      <p class="text-balance">
-                        {" "}
-                        <a href={`/${blogPostEntry.slug}`}>
-                          {blogPostEntry.data.title}
-                        </a>
-                      </p>
-                      TL;DR
-                      <ul class="xs padding-bottom-xxl">
-                        <li>{blogPostEntry.data.tldrOne}</li>
-                        <li>{blogPostEntry.data.tldrTwo}</li>
-                        <li>{blogPostEntry.data.tldrThree}</li>
-                      </ul>
-                      <div class="flex justify-end">
-                        <a
-                          href={`/${blogPostEntry.slug}`}
-                          class="rounded-xl bg-accent-400 underline p-2 hover:text-white-50 hover:bg-accent-700"
-                        >
-                          Read More
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                  <Card
+                    url={`/${blogPostEntry.slug}`}
+                    headerSrc={blogPostEntry.data.headerImage.src}
+                    headerAlt={blogPostEntry.data.headerImage.alt}
+                    title={blogPostEntry.data.title}
+                    tldrOne={blogPostEntry.data.tldrOne}
+                    tldrTwo={blogPostEntry.data.tldrTwo}
+                    tldrThree={blogPostEntry.data.tldrThree}
+                  />
                 </>
               ))
             }
